@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Criança Carmesin - Leitor de HQ</title>
+    <meta
+      name="description"
+      content="Leitor tematico para a HQ Capitulo I - A Crianca Carmesin."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#inicio" aria-label="Voltar ao inicio">
+          <span class="brand-mark">C</span>
+          <span>
+            <strong>A Criança Carmesin</strong>
+            <small>Capítulo I</small>
+          </span>
+        </a>
+
+        <nav class="reader-tools" aria-label="Ferramentas de leitura">
+          <button class="icon-button" id="toggleIndex" type="button" aria-label="Abrir indice de paginas" title="Indice">
+            <span aria-hidden="true">☰</span>
+          </button>
+          <button class="icon-button" id="toggleMode" type="button" aria-label="Alternar modo de leitura" title="Modo de leitura">
+            <span aria-hidden="true">▤</span>
+          </button>
+          <button class="icon-button" id="fullscreenButton" type="button" aria-label="Tela cheia" title="Tela cheia">
+            <span aria-hidden="true">⛶</span>
+          </button>
+        </nav>
+      </header>
+
+      <aside class="chapter-panel" id="chapterPanel" aria-label="Contexto da historia">
+        <div class="chapter-copy">
+          <p class="eyebrow">Reino de Elaris</p>
+          <h1>Capítulo I — A Criança Carmesin</h1>
+          <p>
+            Julia Polli nasce sob a sombra de uma ordem secreta ligada a Coroa. Treinada para ser
+            instrumento politico, ela recebe uma missao que aponta para Valtor e para Igor Jose Farias,
+            herdeiro da Linhagem Prata.
+          </p>
+        </div>
+        <div class="chapter-stats" aria-label="Dados do capitulo">
+          <span><strong>20</strong> páginas</span>
+          <span><strong>HQ</strong> vertical</span>
+          <span><strong>Elaris</strong> carmesim</span>
+        </div>
+      </aside>
+
+      <main class="reader" id="inicio">
+        <section class="reader-stage" aria-label="Leitor da HQ">
+          <div class="progress-track" aria-hidden="true">
+            <span id="progressBar"></span>
+          </div>
+
+          <div class="page-shell">
+            <button class="page-nav prev" id="prevPage" type="button" aria-label="Pagina anterior">
+              <span aria-hidden="true">‹</span>
+            </button>
+
+            <figure class="comic-page">
+              <img id="comicImage" src="Ilustrações/1.png" alt="Pagina 1 da HQ A Criança Carmesin">
+              <figcaption>
+                <span id="pageLabel">Página 1 de 20</span>
+                <span id="modeLabel">Modo página única</span>
+              </figcaption>
+            </figure>
+
+            <button class="page-nav next" id="nextPage" type="button" aria-label="Proxima pagina">
+              <span aria-hidden="true">›</span>
+            </button>
+          </div>
+
+          <div class="scroll-reader" id="scrollReader" aria-label="Leitura em rolagem"></div>
+
+          <div class="bottom-controls" aria-label="Controles de pagina">
+            <button class="control-button" id="firstPage" type="button">Primeira</button>
+            <input id="pageRange" type="range" min="1" max="20" value="1" aria-label="Selecionar pagina">
+            <button class="control-button" id="lastPage" type="button">Última</button>
+          </div>
+        </section>
+      </main>
+
+      <div class="index-drawer" id="indexDrawer" aria-hidden="true">
+        <div class="drawer-backdrop" id="drawerBackdrop"></div>
+        <aside class="drawer-content" aria-label="Indice de paginas">
+          <div class="drawer-header">
+            <div>
+              <p class="eyebrow">Índice</p>
+              <h2>Páginas da HQ</h2>
+            </div>
+            <button class="icon-button" id="closeIndex" type="button" aria-label="Fechar indice" title="Fechar">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="thumb-grid" id="thumbGrid"></div>
+        </aside>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
