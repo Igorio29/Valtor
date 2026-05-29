@@ -197,6 +197,90 @@ h1 {
   padding: clamp(1rem, 3vw, 2rem);
 }
 
+.library {
+  max-width: 1240px;
+  margin: 0 auto clamp(1.3rem, 3vw, 2rem);
+}
+
+.section-heading {
+  margin-bottom: 0.85rem;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+}
+
+.chapter-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.85rem;
+}
+
+.chapter-card {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: center;
+  min-height: 118px;
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 247, 238, 0.045);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.chapter-card:hover {
+  border-color: rgba(214, 170, 87, 0.52);
+  background: rgba(214, 170, 87, 0.1);
+}
+
+.chapter-card:active {
+  transform: translateY(1px);
+}
+
+.chapter-card.active {
+  border-color: var(--gold);
+  background: rgba(181, 22, 45, 0.18);
+  box-shadow: 0 0 0 2px rgba(214, 170, 87, 0.16);
+}
+
+.chapter-card img {
+  display: block;
+  width: 72px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border: 1px solid rgba(214, 170, 87, 0.22);
+  background: var(--panel);
+}
+
+.chapter-card-copy {
+  display: grid;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
+.chapter-card-copy small,
+.chapter-card-copy span {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.chapter-card-copy small {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.chapter-card-copy strong {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 1rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .reader-stage {
   position: relative;
   max-width: 1240px;
@@ -436,6 +520,15 @@ body.scroll-mode .scroll-reader {
 
   .reader {
     padding-inline: 0.75rem;
+  }
+
+  .chapter-card {
+    grid-template-columns: 58px minmax(0, 1fr);
+    min-height: 96px;
+  }
+
+  .chapter-card img {
+    width: 58px;
   }
 
   .progress-track {

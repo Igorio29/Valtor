@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>A Criança Carmesin - Leitor de HQ</title>
+    <title>Valtor - Leitor de capítulos</title>
     <meta
       name="description"
-      content="Leitor tematico para a HQ Capitulo I - A Crianca Carmesin."
+      content="Leitor tematico para os capitulos ilustrados de Valtor."
     >
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -16,8 +16,8 @@
         <a class="brand" href="#inicio" aria-label="Voltar ao inicio">
           <span class="brand-mark">C</span>
           <span>
-            <strong>A Criança Carmesin</strong>
-            <small>Capítulo I</small>
+            <strong id="brandTitle">Valtor</strong>
+            <small id="brandSubtitle">Biblioteca de capítulos</small>
           </span>
         </a>
 
@@ -36,22 +36,30 @@
 
       <aside class="chapter-panel" id="chapterPanel" aria-label="Contexto da historia">
         <div class="chapter-copy">
-          <p class="eyebrow">Reino de Elaris</p>
-          <h1>Capítulo I — A Criança Carmesin</h1>
-          <p>
+          <p class="eyebrow" id="chapterWorld">Reino de Elaris</p>
+          <h1 id="chapterTitle">Capítulo I — A Criança Carmesin</h1>
+          <p id="chapterDescription">
             Julia Polli nasce sob a sombra de uma ordem secreta ligada a Coroa. Treinada para ser
             instrumento politico, ela recebe uma missao que aponta para Valtor e para Igor Jose Farias,
             herdeiro da Linhagem Prata.
           </p>
         </div>
         <div class="chapter-stats" aria-label="Dados do capitulo">
-          <span><strong>20</strong> páginas</span>
-          <span><strong>HQ</strong> vertical</span>
-          <span><strong>Elaris</strong> carmesim</span>
+          <span><strong id="chapterPages">20</strong> páginas</span>
+          <span><strong id="chapterFormat">HQ</strong> formato</span>
+          <span><strong id="chapterTone">Elaris</strong> arco</span>
         </div>
       </aside>
 
       <main class="reader" id="inicio">
+        <section class="library" aria-labelledby="libraryTitle">
+          <div class="section-heading">
+            <p class="eyebrow">Biblioteca</p>
+            <h2 id="libraryTitle">Capítulos disponíveis</h2>
+          </div>
+          <div class="chapter-list" id="chapterList" aria-label="Selecionar capítulo"></div>
+        </section>
+
         <section class="reader-stage" aria-label="Leitor da HQ">
           <div class="progress-track" aria-hidden="true">
             <span id="progressBar"></span>
