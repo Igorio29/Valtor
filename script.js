@@ -24,6 +24,18 @@ const chapters = [
     format: "HQ",
     tone: "Valtor",
   },
+  {
+    id: "capitulo-03",
+    number: "Capítulo III",
+    title: "A noite é dos Pratas",
+    world: "Valtor",
+    description: "Igor após 5 anos de idade começa o treinamento com o prata vigente Godric Farias, mas é muito dificil agradar os mais fortes",
+    folder: "Capitulos/Capitulo-03/",
+    pages: 30,
+    extension: "png",
+    format: "HQ",
+    tone: "Valtor",
+  },
   /*
   Para adicionar um novo capítulo, copie este modelo e ajuste os campos:
   {
