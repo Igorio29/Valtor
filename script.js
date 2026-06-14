@@ -36,6 +36,18 @@ const chapters = [
     format: "HQ",
     tone: "Valtor",
   },
+  {
+    id: "capitulo-04",
+    number: "Capítulo IV",
+    title: "A ordem",
+    world: "Valtor",
+    description: "Após Igor derrotar 3 soldados veteranos juntos, Alexander o convoca para uma ordem secreta onde aprende a ser uma arma para o reino",
+    folder: "Capitulos/Capitulo-04/",
+    pages: 13,
+    extension: "png",
+    format: "HQ",
+    tone: "Valtor",
+  },
   /*
   Para adicionar um novo capítulo, copie este modelo e ajuste os campos:
   {
