@@ -48,6 +48,18 @@ const chapters = [
     format: "HQ",
     tone: "Valtor",
   },
+  {
+    id: "capitulo-05",
+    number: "Capítulo V",
+    title: "Entre flores e máscaras",
+    world: "Valtor",
+    description: "Igor completa a primeira missão com sucesso utilizando tatica, e Julia consegue entrar em Valtor, mas ela é percebida por alguém muito importante",
+    folder: "Capitulos/Capitulo-05/",
+    pages: 35,
+    extension: "png",
+    format: "HQ",
+    tone: "Valtor",
+  },
   /*
   Para adicionar um novo capítulo, copie este modelo e ajuste os campos:
   {
