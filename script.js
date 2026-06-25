@@ -6,9 +6,9 @@ const chapters = [
     world: "Reino de Elaris",
     description:
       "Julia Polli nasce sob a sombra de uma ordem secreta ligada à Coroa. Treinada para ser instrumento político, ela recebe uma missão que aponta para Valtor e para Igor José Farias, herdeiro da Linhagem Prata.",
-    folder: "Capitulos/Capitulo-01",
+    folder: "Capitulos/Capitulo-01/web",
     pages: 20,
-    extension: "png",
+    extension: "jpg",
     format: "HQ",
     tone: "Elaris",
   },
@@ -18,9 +18,9 @@ const chapters = [
     title: "Valtor",
     world: "Sul",
     description: "O nascimento das grandes muralhas, o nascimento de uma tradição, o nascimento de VALTOR.",
-    folder: "Capitulos/Capitulo-02/",
+    folder: "Capitulos/Capitulo-02/web/",
     pages: 19,
-    extension: "png",
+    extension: "jpg",
     format: "HQ",
     tone: "Valtor",
   },
@@ -30,9 +30,9 @@ const chapters = [
     title: "A noite é dos Pratas",
     world: "Valtor",
     description: "Igor após 5 anos de idade começa o treinamento com o prata vigente Godric Farias, mas é muito dificil agradar os mais fortes",
-    folder: "Capitulos/Capitulo-03/",
+    folder: "Capitulos/Capitulo-03/web/",
     pages: 30,
-    extension: "png",
+    extension: "jpg",
     format: "HQ",
     tone: "Valtor",
   },
@@ -42,9 +42,9 @@ const chapters = [
     title: "A ordem",
     world: "Valtor",
     description: "Após Igor derrotar 3 soldados veteranos juntos, Alexander o convoca para uma ordem secreta onde aprende a ser uma arma para o reino",
-    folder: "Capitulos/Capitulo-04/",
+    folder: "Capitulos/Capitulo-04/web/",
     pages: 13,
-    extension: "png",
+    extension: "jpg",
     format: "HQ",
     tone: "Valtor",
   },
@@ -54,9 +54,9 @@ const chapters = [
     title: "Entre flores e máscaras",
     world: "Valtor",
     description: "Igor completa a primeira missão com sucesso utilizando tatica, e Julia consegue entrar em Valtor, mas ela é percebida por alguém muito importante",
-    folder: "Capitulos/Capitulo-05/",
+    folder: "Capitulos/Capitulo-05/web/",
     pages: 35,
-    extension: "png",
+    extension: "jpg",
     format: "HQ",
     tone: "Valtor",
   },
@@ -79,6 +79,9 @@ const chapters = [
 
 let currentChapter = chapters[0];
 let currentPage = 1;
+let thumbnailsBuiltFor = "";
+let scrollReaderBuiltFor = "";
+const preloadedPages = new Set();
 
 const brandTitle = document.querySelector("#brandTitle");
 const brandSubtitle = document.querySelector("#brandSubtitle");
@@ -108,7 +111,8 @@ const fullscreenButton = document.querySelector("#fullscreenButton");
 const scrollReader = document.querySelector("#scrollReader");
 
 function pageSrc(chapter, page) {
-  return `${chapter.folder}/${page}.${chapter.extension}`;
+  const folder = chapter.folder.replace(/\/+$/, "");
+  return `${folder}/${page}.${chapter.extension}`;
 }
 
 function chapterName(chapter) {
@@ -122,6 +126,7 @@ function clampPage(page) {
 function setPage(page, shouldScroll = false) {
   currentPage = clampPage(page);
   image.src = pageSrc(currentChapter, currentPage);
+  image.decoding = "async";
   image.alt = `Página ${currentPage} de ${chapterName(currentChapter)}`;
   pageLabel.textContent = `Página ${currentPage} de ${currentChapter.pages}`;
   pageRange.value = String(currentPage);
@@ -136,6 +141,9 @@ function setPage(page, shouldScroll = false) {
   if (shouldScroll) {
     document.querySelector(".reader-stage").scrollIntoView({ block: "start" });
   }
+
+  preloadPage(currentPage + 1);
+  preloadPage(currentPage - 1);
 }
 
 function renderChapterMeta() {
@@ -151,6 +159,10 @@ function renderChapterMeta() {
 }
 
 function openDrawer() {
+  if (thumbnailsBuiltFor !== currentChapter.id) {
+    buildThumbnails();
+  }
+
   indexDrawer.classList.add("open");
   indexDrawer.setAttribute("aria-hidden", "false");
 }
@@ -226,6 +238,7 @@ function buildThumbnails() {
   }
 
   thumbGrid.appendChild(fragment);
+  thumbnailsBuiltFor = currentChapter.id;
 }
 
 function buildScrollReader() {
@@ -250,6 +263,24 @@ function buildScrollReader() {
   }
 
   scrollReader.appendChild(fragment);
+  scrollReaderBuiltFor = currentChapter.id;
+}
+
+function preloadPage(page) {
+  if (page < 1 || page > currentChapter.pages) {
+    return;
+  }
+
+  const preloadImage = new Image();
+  const src = pageSrc(currentChapter, page);
+
+  if (preloadedPages.has(src)) {
+    return;
+  }
+
+  preloadedPages.add(src);
+  preloadImage.decoding = "async";
+  preloadImage.src = src;
 }
 
 function updateActiveChapter() {
@@ -267,15 +298,23 @@ function setChapter(chapterId, shouldScroll = false) {
 
   currentChapter = nextChapter;
   currentPage = 1;
+  thumbnailsBuiltFor = "";
+  scrollReaderBuiltFor = "";
+  preloadedPages.clear();
+  thumbGrid.innerHTML = "";
+  scrollReader.innerHTML = "";
   renderChapterMeta();
-  buildThumbnails();
-  buildScrollReader();
   updateActiveChapter();
   setPage(1, shouldScroll);
 }
 
 function toggleReadingMode() {
   const scrollMode = document.body.classList.toggle("scroll-mode");
+
+  if (scrollMode && scrollReaderBuiltFor !== currentChapter.id) {
+    buildScrollReader();
+  }
+
   modeLabel.textContent = scrollMode ? "Modo rolagem" : "Modo página única";
   toggleMode.setAttribute(
     "aria-label",
@@ -297,7 +336,11 @@ function updatePageFromScroll() {
   const visible = pages.find((page) => page.getBoundingClientRect().bottom > marker);
 
   if (visible) {
-    setPage(Number(visible.id.replace("pagina-", "")));
+    const nextPage = Number(visible.id.replace("pagina-", ""));
+
+    if (nextPage !== currentPage) {
+      setPage(nextPage);
+    }
   }
 }
 
@@ -330,11 +373,17 @@ document.addEventListener("keydown", (event) => {
     closeDrawer();
   }
 
+  if (event.target instanceof HTMLInputElement) {
+    return;
+  }
+
   if (event.key === "ArrowLeft") {
+    event.preventDefault();
     setPage(currentPage - 1);
   }
 
   if (event.key === "ArrowRight") {
+    event.preventDefault();
     setPage(currentPage + 1);
   }
 });
