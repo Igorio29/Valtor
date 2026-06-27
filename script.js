@@ -60,6 +60,18 @@ const chapters = [
     format: "HQ",
     tone: "Valtor",
   },
+  {
+    id: "capitulo-06",
+    number: "Capítulo VI",
+    title: "A torre Sul",
+    world: "Valtor",
+    description: "Julia começa a verdadeira missão, mas as coisas não ocorrem como deviam",
+    folder: "Capitulos/Capitulo-06/",
+    pages: 20,
+    extension: "jpg",
+    format: "HQ",
+    tone: "Valtor",
+  },
   /*
   Para adicionar um novo capítulo, copie este modelo e ajuste os campos:
   {
