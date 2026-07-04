@@ -72,6 +72,18 @@ const chapters = [
     format: "HQ",
     tone: "Valtor",
   },
+  {
+    id: "capitulo-07",
+    number: "Capítulo VII",
+    title: "A infiltrada",
+    world: "Valtor",
+    description: "Julia consegue se infiltrar dentro do castelo",
+    folder: "Capitulos/Capitulo-07/",
+    pages: 28,
+    extension: "jpg",
+    format: "HQ",
+    tone: "Valtor",
+  },
   /*
   Para adicionar um novo capítulo, copie este modelo e ajuste os campos:
   {
