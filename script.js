@@ -84,6 +84,19 @@ const chapters = [
     format: "HQ",
     tone: "Valtor",
   },
+  {
+    id: "capitulo-08",
+    number: "Capítulo VIII",
+    title: "Os cavalos Omega",
+    world: "Valtor",
+    description:
+      "Julia trabalha nos estábulos do castelo e observa Igor, Leon e Matteo de perto, descobrindo detalhes sobre a Ordem, Godric e o passado dos jovens guerreiros.",
+    folder: "Capitulos/Capitulo-08/",
+    pages: 40,
+    extension: "jpg",
+    format: "HQ",
+    tone: "Valtor",
+  },
   /*
   Para adicionar um novo capítulo, copie este modelo e ajuste os campos:
   {
