@@ -97,6 +97,19 @@ const chapters = [
     format: "HQ",
     tone: "Valtor",
   },
+  {
+    id: "capitulo-09",
+    number: "Capítulo IV",
+    title: "Entre Ferraduras e Coroas",
+    world: "Valtor",
+    description:
+      "Um pouco sobre a relação da familia real, uma missão inesperada e uma visita programada",
+    folder: "Capitulos/Capitulo-09/",
+    pages: 32,
+    extension: "jpg",
+    format: "HQ",
+    tone: "Valtor",
+  },
   /*
   Para adicionar um novo capítulo, copie este modelo e ajuste os campos:
   {
