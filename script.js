@@ -123,6 +123,19 @@ const chapters = [
     format: "HQ",
     tone: "Valtor",
   },
+  {
+    id: "capitulo-11",
+    number: "Capítulo XI",
+    title: "A Escolha",
+    world: "Valtor",
+    description:
+      "A grande escolha da Criança Carmesin",
+    folder: "Capitulos/Capitulo-11/",
+    pages: 50,
+    extension: "jpg",
+    format: "HQ",
+    tone: "Valtor",
+  },
   /*
   Para adicionar um novo capítulo, copie este modelo e ajuste os campos:
   {
