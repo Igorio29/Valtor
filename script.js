@@ -99,7 +99,7 @@ const chapters = [
   },
   {
     id: "capitulo-09",
-    number: "Capítulo IV",
+    number: "Capítulo IX",
     title: "Entre Ferraduras e Coroas",
     world: "Valtor",
     description:
@@ -112,7 +112,7 @@ const chapters = [
   },
   {
     id: "capitulo-10",
-    number: "Capítulo V",
+    number: "Capítulo X",
     title: "Visita inesperada",
     world: "Valtor",
     description:
