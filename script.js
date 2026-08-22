@@ -110,6 +110,19 @@ const chapters = [
     format: "HQ",
     tone: "Valtor",
   },
+  {
+    id: "capitulo-10",
+    number: "Capítulo V",
+    title: "Visita inesperada",
+    world: "Valtor",
+    description:
+      "Julia é confrontada com a verdade e com a obediencia",
+    folder: "Capitulos/Capitulo-10/",
+    pages: 30,
+    extension: "jpg",
+    format: "HQ",
+    tone: "Valtor",
+  },
   /*
   Para adicionar um novo capítulo, copie este modelo e ajuste os campos:
   {
