@@ -136,6 +136,19 @@ const chapters = [
     format: "HQ",
     tone: "Valtor",
   },
+  {
+    id: "capitulo-12",
+    number: "Capítulo XII",
+    title: "7 Dias",
+    world: "Valtor",
+    description:
+      "Julia finalmente entende por que a Ordem da Mascara negra é tão eficiente.",
+    folder: "Capitulos/Capitulo-12/",
+    pages: 45,
+    extension: "jpg",
+    format: "HQ",
+    tone: "Valtor",
+  },
   /*
   Para adicionar um novo capítulo, copie este modelo e ajuste os campos:
   {
