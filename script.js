@@ -149,6 +149,20 @@ const chapters = [
     format: "HQ",
     tone: "Valtor",
   },
+
+  {
+    id: "capitulo-13",
+    number: "Capítulo XIII",
+    title: "A escolha",
+    world: "Valtor",
+    description:
+      "Julia escolhe pro quem lutar.",
+    folder: "Capitulos/Capitulo-13/",
+    pages: 53,
+    extension: "jpg",
+    format: "HQ",
+    tone: "Valtor",
+  },
   /*
   Para adicionar um novo capítulo, copie este modelo e ajuste os campos:
   {
