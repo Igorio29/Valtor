@@ -163,6 +163,19 @@ const chapters = [
     format: "HQ",
     tone: "Valtor",
   },
+    {
+    id: "capitulo-14",
+    number: "Capítulo XIV",
+    title: "O peso da confiança",
+    world: "Valtor",
+    description:
+      "Após meses vivendo em Valtor sob desconfiança, Júlia finalmente responde por seu passado diante da família real. \nEnquanto o perdão coloca à prova a confiança entre aliados, uma convocação reúne os líderes da Ordem para decidir os\npróximos passos da guerra contra a Carmesim. Agora, Júlia terá de provar que a oportunidade recebida não foi um erro..",
+    folder: "Capitulos/Capitulo-14/",
+    pages: 85,
+    extension: "jpg",
+    format: "HQ",
+    tone: "Valtor",
+  },
   /*
   Para adicionar um novo capítulo, copie este modelo e ajuste os campos:
   {
