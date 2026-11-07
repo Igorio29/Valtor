@@ -240,6 +240,8 @@ const fullscreenButton = document.querySelector("#fullscreenButton");
 const scrollReader = document.querySelector("#scrollReader");
 const latestChapter = document.querySelector("#latestChapter");
 const resumeReading = document.querySelector("#resumeReading");
+const shelfPrevious = document.querySelector("#shelfPrevious");
+const shelfNext = document.querySelector("#shelfNext");
 const readingKey = "valtor-reading-position";
 
 function readSavedPosition() {
@@ -355,7 +357,7 @@ function buildChapterList() {
 
     const cover = document.createElement("img");
     cover.src = pageSrc(chapter, 1);
-    cover.alt = `Capa de ${chapterName(chapter)}`;
+    cover.alt = "";
     cover.loading = "lazy";
 
     const copy = document.createElement("span");
@@ -553,6 +555,8 @@ pageRange.addEventListener("input", (event) => {
   setPage(Number(event.target.value), document.body.classList.contains("scroll-mode"));
 });
 latestChapter.addEventListener("click", () => setChapter(chapters.at(-1).id, true));
+shelfPrevious.addEventListener("click", () => chapterList.scrollBy({ left: -chapterList.clientWidth }));
+shelfNext.addEventListener("click", () => chapterList.scrollBy({ left: chapterList.clientWidth }));
 window.addEventListener("hashchange", () => openHash(true));
 toggleIndex.addEventListener("click", openDrawer);
 closeIndex.addEventListener("click", closeDrawer);

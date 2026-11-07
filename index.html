@@ -13,13 +13,18 @@
   <body>
     <div class="app-shell">
       <header class="topbar">
-        <a class="brand" href="#inicio" aria-label="Voltar ao inicio">
+        <a class="brand" href="#inicio" aria-label="Voltar ao início">
           <span class="brand-mark" aria-hidden="true">V</span>
           <span>
             <strong id="brandTitle">Valtor</strong>
             <small id="brandSubtitle">Biblioteca de capítulos</small>
           </span>
         </a>
+
+        <div class="site-links" aria-label="Seções do site">
+          <a href="#biblioteca">Capítulos</a>
+          <a href="#leitor">Leitor</a>
+        </div>
 
         <nav class="reader-tools" aria-label="Ferramentas de leitura">
           <button class="icon-button" id="toggleIndex" type="button" aria-label="Abrir indice de paginas" title="Indice">
@@ -34,74 +39,94 @@
         </nav>
       </header>
 
-      <aside class="chapter-panel" id="chapterPanel" aria-label="Contexto da historia">
-        <div class="chapter-copy">
-          <p class="eyebrow" id="chapterWorld">Reino de Elaris</p>
-          <h1 id="chapterTitle">Capítulo I — A Criança Carmesin</h1>
-          <p id="chapterDescription">
-            Julia Polli nasce sob a sombra de uma ordem secreta ligada a Coroa. Treinada para ser
-            instrumento politico, ela recebe uma missao que aponta para Valtor e para Igor Jose Farias,
-            herdeiro da Linhagem Prata.
-          </p>
-        </div>
-        <div class="chapter-stats" aria-label="Dados do capitulo">
-          <span><strong id="chapterPages">20</strong> páginas</span>
-          <span><strong id="chapterFormat">HQ</strong> formato</span>
-          <span><strong id="chapterTone">Elaris</strong> arco</span>
-        </div>
-      </aside>
-
-      <main class="reader" id="inicio">
-        <section class="library" aria-labelledby="libraryTitle">
-          <div class="section-heading">
-            <p class="eyebrow">Biblioteca</p>
-            <h2 id="libraryTitle">Capítulos disponíveis</h2>
+      <main id="inicio">
+        <section class="hero" aria-labelledby="heroTitle">
+          <svg class="hero-art" viewBox="28 8 968 305" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <image href="Capitulos/Capitulo-15/7.jpg" width="1024" height="1536"/>
+          </svg>
+          <div class="hero-copy">
+            <p class="eyebrow">HQ de fantasia medieval</p>
+            <h1 id="heroTitle">Valtor</h1>
+            <p class="hero-description">Treinada pela Carmesim para matar Igor, Júlia precisa escolher a quem será leal quando a guerra se aproxima.</p>
+            <div class="library-actions">
+              <button class="control-button primary-action" id="latestChapter" type="button">Ler capítulo XV <span aria-hidden="true">↗</span></button>
+              <button class="control-button" id="resumeReading" type="button" hidden>Retomar leitura</button>
+              <a class="hero-library-link" href="#biblioteca">Explorar capítulos <span aria-hidden="true">↓</span></a>
+            </div>
           </div>
-          <div class="library-actions">
-            <button class="control-button" id="latestChapter" type="button">Ler capítulo XV</button>
-            <button class="control-button" id="resumeReading" type="button" hidden>Retomar leitura</button>
-          </div>
-          <div class="chapter-list" id="chapterList" aria-label="Selecionar capítulo"></div>
+          <span class="hero-caption" aria-hidden="true">Vale da Ordem · Capítulo XV</span>
         </section>
 
-        <section class="reader-stage" aria-label="Leitor da HQ">
-          <div class="progress-track" aria-hidden="true">
-            <span id="progressBar"></span>
-          </div>
+        <div class="reader">
+          <section class="library" id="biblioteca" aria-labelledby="libraryTitle">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Biblioteca</p>
+                <h2 id="libraryTitle">Capítulos</h2>
+              </div>
+              <div class="shelf-controls" aria-label="Navegar pelas capas">
+                <button class="icon-button" id="shelfPrevious" type="button" aria-label="Ver capítulos anteriores">‹</button>
+                <button class="icon-button" id="shelfNext" type="button" aria-label="Ver mais capítulos">›</button>
+              </div>
+            </div>
+            <div class="chapter-list" id="chapterList" aria-label="Selecionar capítulo"></div>
+          </section>
 
-          <div class="page-shell">
-            <button class="page-nav prev" id="prevPage" type="button" aria-label="Pagina anterior">
-              <span aria-hidden="true">‹</span>
-            </button>
+          <section class="reader-stage" id="leitor" aria-label="Leitor da HQ">
+            <div class="chapter-panel" id="chapterPanel">
+              <div class="chapter-copy">
+                <p class="eyebrow" id="chapterWorld">Reino de Elaris</p>
+                <h2 id="chapterTitle">Capítulo I — A Criança Carmesin</h2>
+                <p id="chapterDescription">
+                  Julia Polli nasce sob a sombra de uma ordem secreta ligada a Coroa. Treinada para ser
+                  instrumento politico, ela recebe uma missao que aponta para Valtor e para Igor Jose Farias,
+                  herdeiro da Linhagem Prata.
+                </p>
+              </div>
+              <div class="chapter-stats" aria-label="Dados do capitulo">
+                <span><strong id="chapterPages">20</strong> páginas</span>
+                <span><strong id="chapterFormat">HQ</strong> formato</span>
+                <span><strong id="chapterTone">Elaris</strong> arco</span>
+              </div>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <span id="progressBar"></span>
+            </div>
 
-            <figure class="comic-page">
-              <img
-                id="comicImage"
-                src="Capitulos/Capitulo-01/web/1.jpg"
-                alt="Pagina 1 da HQ A Criança Carmesin"
-                loading="eager"
-                decoding="async"
-                fetchpriority="high"
-              >
-              <figcaption>
-                <span id="pageLabel" aria-live="polite">Página 1 de 20</span>
-                <span id="modeLabel">Modo página única</span>
-              </figcaption>
-            </figure>
+            <div class="page-shell">
+              <button class="page-nav prev" id="prevPage" type="button" aria-label="Pagina anterior">
+                <span aria-hidden="true">‹</span>
+              </button>
 
-            <button class="page-nav next" id="nextPage" type="button" aria-label="Proxima pagina">
-              <span aria-hidden="true">›</span>
-            </button>
-          </div>
+              <figure class="comic-page">
+                <img
+                  id="comicImage"
+                  src="Capitulos/Capitulo-01/web/1.jpg"
+                  alt="Pagina 1 da HQ A Criança Carmesin"
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
+                >
+                <figcaption>
+                  <span id="pageLabel" aria-live="polite">Página 1 de 20</span>
+                  <span id="modeLabel">Modo página única</span>
+                </figcaption>
+              </figure>
 
-          <div class="scroll-reader" id="scrollReader" aria-label="Leitura em rolagem"></div>
+              <button class="page-nav next" id="nextPage" type="button" aria-label="Proxima pagina">
+                <span aria-hidden="true">›</span>
+              </button>
+            </div>
 
-          <div class="bottom-controls" aria-label="Controles de pagina">
-            <button class="control-button" id="firstPage" type="button">Primeira</button>
-            <input id="pageRange" type="range" min="1" max="20" value="1" aria-label="Selecionar pagina">
-            <button class="control-button" id="lastPage" type="button">Última</button>
-          </div>
-        </section>
+            <div class="scroll-reader" id="scrollReader" aria-label="Leitura em rolagem"></div>
+
+            <div class="bottom-controls" aria-label="Controles de pagina">
+              <button class="control-button" id="firstPage" type="button">Primeira</button>
+              <input id="pageRange" type="range" min="1" max="20" value="1" aria-label="Selecionar pagina">
+              <button class="control-button" id="lastPage" type="button">Última</button>
+            </div>
+          </section>
+        </div>
       </main>
 
       <div class="index-drawer" id="indexDrawer" aria-hidden="true">
