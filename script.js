@@ -176,6 +176,19 @@ const chapters = [
     format: "HQ",
     tone: "Valtor",
   },
+  {
+    id: "capitulo-15",
+    number: "Capítulo XV",
+    title: "O Peso da Confiança",
+    world: "Valtor",
+    description:
+      "Júlia acompanha Igor ao Vale da Ordem. De volta ao castelo, uma aula de equitação dá lugar a uma conversa entre os irmãos sobre o perdão e os limites da confiança.",
+    folder: "Capitulos/Capitulo-15",
+    pages: 29,
+    extension: "jpg",
+    format: "HQ",
+    tone: "Valtor",
+  },
   /*
   Para adicionar um novo capítulo, copie este modelo e ajuste os campos:
   {
@@ -225,6 +238,26 @@ const thumbGrid = document.querySelector("#thumbGrid");
 const toggleMode = document.querySelector("#toggleMode");
 const fullscreenButton = document.querySelector("#fullscreenButton");
 const scrollReader = document.querySelector("#scrollReader");
+const latestChapter = document.querySelector("#latestChapter");
+const resumeReading = document.querySelector("#resumeReading");
+const readingKey = "valtor-reading-position";
+
+function readSavedPosition() {
+  try {
+    return JSON.parse(localStorage.getItem(readingKey));
+  } catch {
+    return null;
+  }
+}
+
+function openPosition(position, shouldScroll = false) {
+  if (!position || !chapters.some((chapter) => chapter.id === position.chapter)) {
+    return false;
+  }
+
+  setChapter(position.chapter, shouldScroll, position.page);
+  return true;
+}
 
 function pageSrc(chapter, page) {
   const folder = chapter.folder.replace(/\/+$/, "");
@@ -236,6 +269,10 @@ function chapterName(chapter) {
 }
 
 function clampPage(page) {
+  if (!Number.isSafeInteger(page)) {
+    return 1;
+  }
+
   return Math.min(currentChapter.pages, Math.max(1, page));
 }
 
@@ -250,12 +287,29 @@ function setPage(page, shouldScroll = false) {
   prevPage.disabled = currentPage === 1;
   nextPage.disabled = currentPage === currentChapter.pages;
 
+  const hash = `#${currentChapter.id}/${currentPage}`;
+  if (location.hash !== hash) {
+    history.replaceState(null, "", hash);
+  }
+
   document.querySelectorAll(".thumb-button").forEach((button) => {
     button.classList.toggle("active", Number(button.dataset.page) === currentPage);
   });
 
   if (shouldScroll) {
-    document.querySelector(".reader-stage").scrollIntoView({ block: "start" });
+    const target = document.body.classList.contains("scroll-mode")
+      ? document.querySelector(`#pagina-${currentPage}`)
+      : document.querySelector(".reader-stage");
+    target?.scrollIntoView({ block: "start" });
+  }
+
+  if (currentChapter !== chapters[0] || currentPage > 1) {
+    try {
+      localStorage.setItem(readingKey, JSON.stringify({ chapter: currentChapter.id, page: currentPage }));
+      resumeReading.hidden = false;
+    } catch {
+      // Reading also works when browser storage is disabled.
+    }
   }
 
   preloadPage(currentPage + 1);
@@ -370,6 +424,7 @@ function buildScrollReader() {
     pageImage.src = pageSrc(currentChapter, page);
     pageImage.alt = `Página ${page} de ${chapterName(currentChapter)}`;
     pageImage.loading = page <= 2 ? "eager" : "lazy";
+    pageImage.decoding = "async";
 
     const caption = document.createElement("figcaption");
     caption.textContent = `Página ${page} de ${currentChapter.pages}`;
@@ -401,11 +456,13 @@ function preloadPage(page) {
 
 function updateActiveChapter() {
   document.querySelectorAll(".chapter-card").forEach((button) => {
-    button.classList.toggle("active", button.dataset.chapter === currentChapter.id);
+    const active = button.dataset.chapter === currentChapter.id;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
   });
 }
 
-function setChapter(chapterId, shouldScroll = false) {
+function setChapter(chapterId, shouldScroll = false, page = 1) {
   const nextChapter = chapters.find((chapter) => chapter.id === chapterId);
 
   if (!nextChapter) {
@@ -421,7 +478,10 @@ function setChapter(chapterId, shouldScroll = false) {
   scrollReader.innerHTML = "";
   renderChapterMeta();
   updateActiveChapter();
-  setPage(1, shouldScroll);
+  if (document.body.classList.contains("scroll-mode")) {
+    buildScrollReader();
+  }
+  setPage(page, shouldScroll);
 }
 
 function toggleReadingMode() {
@@ -470,13 +530,30 @@ function toggleFullscreen() {
 }
 
 buildChapterList();
-setChapter(currentChapter.id);
+const savedPosition = readSavedPosition();
+if (savedPosition && chapters.some((chapter) => chapter.id === savedPosition.chapter)) {
+  resumeReading.hidden = false;
+}
+resumeReading.addEventListener("click", () => openPosition(readSavedPosition(), true));
+
+function openHash(shouldScroll = false) {
+  const match = /^#(capitulo-\d{2})\/(\d+)$/.exec(location.hash);
+  return match ? openPosition({ chapter: match[1], page: Number(match[2]) }, shouldScroll) : false;
+}
+
+if (!openHash(true)) {
+  setChapter(currentChapter.id);
+}
 
 prevPage.addEventListener("click", () => setPage(currentPage - 1));
 nextPage.addEventListener("click", () => setPage(currentPage + 1));
 firstPage.addEventListener("click", () => setPage(1, true));
 lastPage.addEventListener("click", () => setPage(currentChapter.pages, true));
-pageRange.addEventListener("input", (event) => setPage(Number(event.target.value)));
+pageRange.addEventListener("input", (event) => {
+  setPage(Number(event.target.value), document.body.classList.contains("scroll-mode"));
+});
+latestChapter.addEventListener("click", () => setChapter(chapters.at(-1).id, true));
+window.addEventListener("hashchange", () => openHash(true));
 toggleIndex.addEventListener("click", openDrawer);
 closeIndex.addEventListener("click", closeDrawer);
 drawerBackdrop.addEventListener("click", closeDrawer);
@@ -489,17 +566,17 @@ document.addEventListener("keydown", (event) => {
     closeDrawer();
   }
 
-  if (event.target instanceof HTMLInputElement) {
+  if (event.target instanceof HTMLInputElement || indexDrawer.classList.contains("open")) {
     return;
   }
 
   if (event.key === "ArrowLeft") {
     event.preventDefault();
-    setPage(currentPage - 1);
+    setPage(currentPage - 1, document.body.classList.contains("scroll-mode"));
   }
 
   if (event.key === "ArrowRight") {
     event.preventDefault();
-    setPage(currentPage + 1);
+    setPage(currentPage + 1, document.body.classList.contains("scroll-mode"));
   }
 });

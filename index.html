@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Valtor - Leitor de capítulos</title>
+    <title>Valtor — HQ de fantasia medieval</title>
     <meta
       name="description"
-      content="Leitor tematico para os capitulos ilustrados de Valtor."
+      content="Leia Valtor, uma HQ de fantasia medieval sobre Júlia, Igor e a Ordem da Máscara Negra."
     >
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -14,7 +14,7 @@
     <div class="app-shell">
       <header class="topbar">
         <a class="brand" href="#inicio" aria-label="Voltar ao inicio">
-          <span class="brand-mark">C</span>
+          <span class="brand-mark" aria-hidden="true">V</span>
           <span>
             <strong id="brandTitle">Valtor</strong>
             <small id="brandSubtitle">Biblioteca de capítulos</small>
@@ -57,6 +57,10 @@
             <p class="eyebrow">Biblioteca</p>
             <h2 id="libraryTitle">Capítulos disponíveis</h2>
           </div>
+          <div class="library-actions">
+            <button class="control-button" id="latestChapter" type="button">Ler capítulo XV</button>
+            <button class="control-button" id="resumeReading" type="button" hidden>Retomar leitura</button>
+          </div>
           <div class="chapter-list" id="chapterList" aria-label="Selecionar capítulo"></div>
         </section>
 
@@ -80,7 +84,7 @@
                 fetchpriority="high"
               >
               <figcaption>
-                <span id="pageLabel">Página 1 de 20</span>
+                <span id="pageLabel" aria-live="polite">Página 1 de 20</span>
                 <span id="modeLabel">Modo página única</span>
               </figcaption>
             </figure>

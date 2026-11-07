@@ -202,6 +202,28 @@ h1 {
   margin: 0 auto clamp(1.3rem, 3vw, 2rem);
 }
 
+.library-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0 0 1rem;
+}
+
+.library-actions .control-button {
+  padding-inline: 1rem;
+}
+
+.scroll-page {
+  scroll-margin-top: 6rem;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
 .section-heading {
   margin-bottom: 0.85rem;
 }
